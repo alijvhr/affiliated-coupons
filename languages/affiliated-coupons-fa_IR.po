@@ -1,0 +1,21 @@
+# Copyright (C) 2023 Ali Javaheri
+# This file is distributed under the GPLv3.
+msgid ""
+msgstr ""
+"Project-Id-Version: Affiliated Coupons 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/alijvhr/affiliated-coupons\n"
+"Last-Translator: Ali Javaheri <alijvhr@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2023-02-26T17:48:03+03:30\n"
+"X-Domain: affiliated-coupons\n"
+
+msgid "Affiliated Coupons"
+msgstr "کوپن های شراکتی"
+
+msgid "Affiliation Percentage"
+msgstr "درصد شراکت"
+
+msgid "Affiliate"
+msgstr "مشارکت در فروش"
