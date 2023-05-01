@@ -1,7 +1,37 @@
 <h3>
-	<?= __( 'Affiliation Percentage', 'affiliated-coupons' ) ?>
-    : <?= get_user_meta( get_current_user_id(), 'affiliate_percentage', true )?:'0' ?>%
+	<?= __( 'Your coupons', 'affiliated-coupons' ) ?>
+	<a class="woocommerce-Button button" href="<?= $coupon_create_link ?>">
+		<?= __( 'Create coupon', 'affiliated-coupons' ) ?>
+	</a>
 </h3>
-<label>
-    <input class="regular-text" type="number" name="">
-</label>
+<div>
+	<?php if ( ! count( $coupons ) ) { ?>
+		<div
+			class="woocommerce-message woocommerce-message--info woocommerce-Message woocommerce-Message--info woocommerce-info">
+			<?= __( 'No coupons found', 'affiliated-coupons' ) ?>.
+			<a class="woocommerce-Button button" href="<?= $coupon_create_link ?>">
+				<?= __( 'Create one', 'affiliated-coupons' ) ?>!
+			</a>
+		</div>
+	<?php } else { ?>
+		<table>
+			<tr>
+				<th> <?= __( 'code', 'affiliated-coupons' ) ?> </th>
+				<th> <?= __( 'percent', 'affiliated-coupons' ) ?> </th>
+				<th> <?= __( 'limit', 'affiliated-coupons' ) ?> </th>
+				<th> <?= __( 'expire', 'affiliated-coupons' ) ?> </th>
+				<th> <?= __( 'remaining', 'affiliated-coupons' ) ?> </th>
+			</tr>
+			<?php foreach ( $coupons as $coupon ) {
+				$pm = get_post_meta( $coupon->ID ); ?>
+				<tr>
+					<th><?= $coupon->post_title ?></th>
+					<th><?= $pm['coupon_amount'][0] ?></th>
+					<th><?= $pm['usage_limit'][0] ?: __( 'unlimited', 'affiliated-coupons' ) ?></th>
+					<th><?= $pm['date_expires'][0] ? wp_date( 'Y-m-d H:i:s', $pm['date_expires'][0] ) : __( 'never', 'affiliated-coupons' ); ?></th>
+					<th><?= $pm['usage_limit'][0] - $pm['usage_count'][0] ?></th>
+				</tr>
+			<?php } ?>
+		</table>
+	<?php } ?>
+</div>
