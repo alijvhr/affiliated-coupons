@@ -1,12 +1,46 @@
 <?php
 
-function current_affiliate_percent() {
-	return get_user_meta( get_current_user_id(), 'affiliate_percentage', true ) ?: 0;
+
+add_action( 'woocommerce_payment_complete', 'aac_wc_payment_complete_hook', 10, 1 );
+add_action( 'woocommerce_order_status_changed', 'aac_wc_payment_complete_hook', 10, 3 );
+
+function current_affiliate_percent( $user_id = 0 ) {
+	return get_user_meta( $user_id ?: get_current_user_id(), 'aac_affiliate_percentage', true ) ?: 0;
 }
 
 $aac_new_errors = [];
 
+function aac_wc_payment_complete_hook( $order_id, $old_status = 'pending', $new_status = 'processing' ) {
+	global $wpdb, $aac_table_profit;
+	if ( $old_status == 'pending' && $new_status == 'processing' ) {
+		$order        = wc_get_order( $order_id );
+		$used_coupons = $order->get_coupon_codes();
+		if ( count( $used_coupons ) ) {
+			$coupon       = new WC_coupon( $used_coupons[0] );
+			$post         = get_post( $coupon->id );
+			$affiliate_id = $post->post_author;
+			$percent      = current_affiliate_percent( $affiliate_id );
+			if ( $percent ) {
+				$total         = $order->get_total() - $order->get_total_tax() - $order->get_total_shipping() + $order->get_total_discount();
+				$user_discount = $order->get_total_discount();
+				$profit        = $total * $percent / 100 - $user_discount;
+				$wpdb->insert( $aac_table_profit, [
+					'order_id'      => $order_id,
+					'coupon_code'   => $used_coupons[0],
+					'affiliate_id'  => $affiliate_id,
+					'order_total'   => $total,
+					'user_discount' => $user_discount,
+					'profit'        => $profit
+				] );
+				$user_balance = + get_user_meta( $affiliate_id, 'aac_total_profit', true );
+				update_user_meta( $affiliate_id, 'aac_total_profit', $user_balance + $profit );
+			}
+		}
+	}
+}
+
 function aac_check_form_submit() {
+	global $current_user;
 	if ( isset( $_POST['affiliated-coupons'], $_POST['coupon-id'] ) ) {
 		$p      = $_POST;
 		$coupon = new WC_Coupon();
@@ -36,6 +70,7 @@ function aac_check_form_submit() {
 		$coupon->set_amount( $p['coupon-percent'] );
 		$coupon->set_usage_limit( $p['coupon-limit'] );
 		$coupon->set_date_expires( $p['coupon-date'] );
+		$coupon->set_individual_use( true );
 
 		if ( $coupon->save() ) {
 			wp_redirect( wc_get_account_endpoint_url( 'affiliated-coupons' ) );

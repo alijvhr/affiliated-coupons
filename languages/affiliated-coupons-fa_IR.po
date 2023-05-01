@@ -47,6 +47,9 @@ msgstr "محدودیت استفاده"
 msgid "Expire Date"
 msgstr "تاریخ انقضا"
 
+msgid "Your affiliation"
+msgstr "مشارکت شما"
+
 msgid "max"
 msgstr "حداکثر"
 
@@ -73,3 +76,21 @@ msgstr "نامحدود"
 
 msgid "never"
 msgstr "هیچوقت"
+
+msgid "id"
+msgstr "شماره"
+
+msgid "date"
+msgstr "تاریخ"
+
+msgid "discount"
+msgstr "تخفیف"
+
+msgid "your share"
+msgstr "سهم شما"
+
+msgid "total"
+msgstr "مجموع"
+
+msgid "Your withdrawals"
+msgstr "دریافتی های شما"
