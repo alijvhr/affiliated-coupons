@@ -25,11 +25,11 @@
 			<?php foreach ( $coupons as $coupon ) {
 				$pm = get_post_meta( $coupon->ID ); ?>
 				<tr>
-					<th><?= $coupon->post_title ?></th>
-					<th><?= $pm['coupon_amount'][0] ?></th>
-					<th><?= $pm['usage_limit'][0] ?: __( 'unlimited', 'affiliated-coupons' ) ?></th>
-					<th><?= $pm['date_expires'][0] ? wp_date( 'Y-m-d H:i:s', $pm['date_expires'][0] ) : __( 'never', 'affiliated-coupons' ); ?></th>
-					<th><?= $pm['usage_limit'][0] - $pm['usage_count'][0] ?></th>
+					<td><?= $coupon->post_title ?></td>
+					<td><?= $pm['coupon_amount'][0] ?></td>
+					<td><?= $pm['usage_limit'][0] ?: __( 'unlimited', 'affiliated-coupons' ) ?></td>
+					<td><?= $pm['date_expires'][0] ? wp_date( 'Y-m-d H:i:s', $pm['date_expires'][0] ) : __( 'never', 'affiliated-coupons' ); ?></td>
+					<td><?= $pm['usage_limit'][0] - $pm['usage_count'][0] ?></td>
 				</tr>
 			<?php } ?>
 		</table>

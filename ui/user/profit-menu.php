@@ -27,13 +27,13 @@
 				</tr>
 			<?php foreach ( $orders as $order ) { ?>
 				<tr>
-					<th><?= $order->order_id ?></th>
-					<th><?= $order->coupon_code ?></th>
-					<th><?= wc_price($order->order_total) ?></th>
-					<th><?= wc_price($order->user_discount) ?></th>
-					<th><?= wc_price($order->profit) ?></th>
-					<th><?= get_date_from_gmt($order->order_date) ?></th>
-					<th></th>
+					<td><?= $order->order_id ?></td>
+					<td><?= $order->coupon_code ?></td>
+					<td><?= wc_price($order->order_total) ?></td>
+					<td><?= wc_price($order->user_discount) ?></td>
+					<td><?= wc_price($order->profit) ?></td>
+					<td><?= get_date_from_gmt($order->order_date) ?></td>
+					<td></td>
 				</tr>
 			<?php } ?>
 			</table>

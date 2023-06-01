@@ -16,7 +16,7 @@
 		</label>
 		<label>
 			<span class="text-danger"><?= $aac_new_errors['coupon-percent']??'' ?></span>
-			<?= __( 'Discount Percent', 'affiliated-coupons' ) . ' ' . __( 'max', 'affiliated-coupons' ) . "($current_affiliate_percent%)" ?>
+			<?= __( 'Discount Percent', 'affiliated-coupons' ) . ' new-coupon.php' . __( 'max', 'affiliated-coupons' ) . "($current_affiliate_percent%)" ?>
 			<input class="regular-text" type="number" name="coupon-percent" min="0"
 			       max="<?= $current_affiliate_percent ?>" value="0">
 		</label>

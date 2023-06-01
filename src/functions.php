@@ -40,7 +40,7 @@ function aac_wc_payment_complete_hook( $order_id, $old_status = 'pending', $new_
 }
 
 function aac_check_form_submit() {
-	global $current_user;
+	global $current_user, $wpdb, $aac_table_payment;
 	if ( isset( $_POST['affiliated-coupons'], $_POST['coupon-id'] ) ) {
 		$p      = $_POST;
 		$coupon = new WC_Coupon();
@@ -73,10 +73,21 @@ function aac_check_form_submit() {
 		$coupon->set_individual_use( true );
 
 		if ( $coupon->save() ) {
-			wp_redirect( wc_get_account_endpoint_url( 'affiliated-coupons' ) );
-			exit;
 		}
 
+	} elseif ( isset( $_POST['affiliated-coupons'], $_POST['withdraw-id'] ) ) {
+		if($_POST['amount'] < 1) {
+			wp_redirect( wc_get_account_endpoint_url( 'affiliated-coupons-withdraw-create' ) );
+			exit;
+		}
+		$wpdb->insert( $aac_table_payment, [
+			'affiliate_id' => $current_user->ID,
+			'amount'       =>$_POST['amount']
+		] );
+		$user_balance = + get_user_meta( $current_user->ID, 'aac_total_profit', true );
+		update_user_meta( $current_user->ID, 'aac_total_profit', $user_balance - $_POST['amount'] );
+		wp_redirect( wc_get_account_endpoint_url( 'affiliated-coupons-withdraw' ) );
+		exit;
 	}
 
 }

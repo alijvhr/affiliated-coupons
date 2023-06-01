@@ -94,3 +94,30 @@ msgstr "مجموع"
 
 msgid "Your withdrawals"
 msgstr "دریافتی های شما"
+
+msgid "No withdrawals found"
+msgstr "درخواست برداشتی یافنت نشد"
+
+msgid "balance"
+msgstr "موجودی شما"
+
+msgid "Withdraw request"
+msgstr "درخواست برداشت"
+
+msgid "Request now"
+msgstr "همین حالا درخواست بدهید"
+
+msgid "amount"
+msgstr "مبلغ"
+
+msgid "status"
+msgstr "وضعیت"
+
+msgid "pending"
+msgstr "درحال بررسی"
+
+msgid "payed"
+msgstr "پرداخت شده"
+
+msgid "rejected"
+msgstr "رد شده"
