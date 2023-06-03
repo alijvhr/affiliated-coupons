@@ -60,7 +60,7 @@ function aac_activation_hook() {
 	$charset_collate = $wpdb->get_charset_collate();
 
 	$sql  = "CREATE TABLE IF NOT EXISTS $aac_table_profit ( order_id mediumint(9) NOT NULL, order_date timestamp DEFAULT utc_timestamp NOT NULL, coupon_code varchar(250) NOT NULL, affiliate_id mediumint(9) NOT NULL, order_total decimal NOT NULL, user_discount decimal NOT NULL, profit decimal NOT NULL, PRIMARY KEY(order_id), INDEX(affiliate_id) ) $charset_collate;";
-	$sql2 = "CREATE TABLE IF NOT EXISTS $aac_table_payment ( id mediumint(9) NOT NULL AUTO_INCREMENT, pay_date timestamp DEFAULT NULL NULL, amount decimal NOT NULL, affiliate_id mediumint(9) NOT NULL, status int DEFAULT 0 NOT NULL, description TEXT DEFAULT '' NOT NULL, PRIMARY KEY(id),  INDEX(affiliate_id) ) $charset_collate;";
+	$sql2 = "CREATE TABLE IF NOT EXISTS $aac_table_payment ( id mediumint(9) NOT NULL AUTO_INCREMENT, pay_date timestamp DEFAULT NULL NULL, req_date timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL, amount decimal NOT NULL, affiliate_id mediumint(9) NOT NULL , status int DEFAULT 0 NOT NULL, description TEXT DEFAULT '' NOT NULL, PRIMARY KEY(id),  INDEX(affiliate_id) ) $charset_collate;";
 
 	require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 	dbDelta( $sql );

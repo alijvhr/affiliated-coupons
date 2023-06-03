@@ -104,6 +104,9 @@ msgstr "موجودی شما"
 msgid "Withdraw request"
 msgstr "درخواست برداشت"
 
+msgid "Withdrawall requests"
+msgstr "درخواست های برداشت"
+
 msgid "Request now"
 msgstr "همین حالا درخواست بدهید"
 
@@ -113,6 +116,9 @@ msgstr "مبلغ"
 msgid "status"
 msgstr "وضعیت"
 
+msgid "all"
+msgstr "همه"
+
 msgid "pending"
 msgstr "درحال بررسی"
 
@@ -121,3 +127,12 @@ msgstr "پرداخت شده"
 
 msgid "rejected"
 msgstr "رد شده"
+
+msgid "ID"
+msgstr "شناسه"
+
+msgid "affiliate"
+msgstr "شریک"
+
+msgid "request date"
+msgstr "تاریخ درخواست"

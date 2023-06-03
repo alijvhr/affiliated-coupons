@@ -35,5 +35,8 @@ function aac_admin_menus() {
 }
 
 function aac_admin_menu_content() {
+	require AFFILIATED_COUPONS_PATH . '/src/payments.php';
+	$table = new Payments();
+	$table->prepare_items();
 	require AFFILIATED_COUPONS_PATH . '/ui/admin/main-menu.php';
 }
