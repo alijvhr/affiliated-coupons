@@ -60,6 +60,7 @@ function aac_check_form_submit() {
 		if ( $p['coupon-limit'] < 0 ) {
 			$p['coupon-limit'] = 0;
 		}
+		$coupon_enable = $p['coupon-enable'] ?? false;
 		if ( count( $aac_new_errors ) ) {
 			return;
 		}
@@ -72,17 +73,20 @@ function aac_check_form_submit() {
 		$coupon->set_date_expires( $p['coupon-date'] );
 		$coupon->set_individual_use( true );
 
-		if ( $coupon->save() ) {
-		}
+		$coupon->save();
+		wp_redirect( wc_get_account_endpoint_url( 'affiliated-coupons' ) );
+		exit;
 
+	} elseif ( isset( $_GET['remove_coupon'] ) ) {
+		wp_delete_post($_GET['remove_coupon'], true);
 	} elseif ( isset( $_POST['affiliated-coupons'], $_POST['withdraw-id'] ) ) {
-		if($_POST['amount'] < 1) {
+		if ( $_POST['amount'] < 1 ) {
 			wp_redirect( wc_get_account_endpoint_url( 'affiliated-coupons-withdraw-create' ) );
 			exit;
 		}
 		$wpdb->insert( $aac_table_payment, [
 			'affiliate_id' => $current_user->ID,
-			'amount'       =>$_POST['amount']
+			'amount'       => $_POST['amount']
 		] );
 		$user_balance = + get_user_meta( $current_user->ID, 'aac_total_profit', true );
 		update_user_meta( $current_user->ID, 'aac_total_profit', $user_balance - $_POST['amount'] );

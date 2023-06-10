@@ -19,8 +19,10 @@
 				<th> <?= __( 'code', 'affiliated-coupons' ) ?> </th>
 				<th> <?= __( 'percent', 'affiliated-coupons' ) ?> </th>
 				<th> <?= __( 'limit', 'affiliated-coupons' ) ?> </th>
+				<th> <?= __( 'status', 'affiliated-coupons' ) ?> </th>
 				<th> <?= __( 'expire', 'affiliated-coupons' ) ?> </th>
 				<th> <?= __( 'remaining', 'affiliated-coupons' ) ?> </th>
+				<th> <?= __( 'operation', 'affiliated-coupons' ) ?> </th>
 			</tr>
 			<?php foreach ( $coupons as $coupon ) {
 				$pm = get_post_meta( $coupon->ID ); ?>
@@ -28,8 +30,10 @@
 					<td><?= $coupon->post_title ?></td>
 					<td><?= $pm['coupon_amount'][0] ?></td>
 					<td><?= $pm['usage_limit'][0] ?: __( 'unlimited', 'affiliated-coupons' ) ?></td>
+					<td><?= __( $coupon->post_status, 'affiliated-coupons' ) ?></td>
 					<td><?= $pm['date_expires'][0] ? wp_date( 'Y-m-d H:i:s', $pm['date_expires'][0] ) : __( 'never', 'affiliated-coupons' ); ?></td>
 					<td><?= $pm['usage_limit'][0] - $pm['usage_count'][0] ?></td>
+					<td><a href="<?= "?remove_coupon=$coupon->ID" ?>"> <?= __( 'remove', 'affiliated-coupons' ) ?> </a></td>
 				</tr>
 			<?php } ?>
 		</table>

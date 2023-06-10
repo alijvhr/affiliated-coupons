@@ -136,3 +136,18 @@ msgstr "شریک"
 
 msgid "request date"
 msgstr "تاریخ درخواست"
+
+msgid "operation"
+msgstr "عملیات"
+
+msgid "edit"
+msgstr "ویرایش"
+
+msgid "Edit coupon"
+msgstr "ویرایش کوپن"
+
+msgid "Enable"
+msgstr "فعال"
+
+msgid "remove"
+msgstr "حذف"

@@ -1,5 +1,5 @@
 <h3>
-	<?= __( 'Create coupon', 'affiliated-coupons' ) ?>
+	<?= __( 'Edit coupon', 'affiliated-coupons' ) ?>
 </h3>
 
 <p style="font-weight:bold">
@@ -8,11 +8,11 @@
 </p>
 
 <div>
-	<form method="post" action="<?= $coupon_create_link ?>">
-        <label>
+	<form method="post" action="<?= $coupon_edit_link ?>">
+		<label>
             <input type="checkbox" name="coupon-enable" value="1">
 			<?= __( 'Enable', 'affiliated-coupons' ) ?>
-        </label>
+		</label>
 		<label>
 			<?= __( 'Coupon\'s Code', 'affiliated-coupons' ) ?>
 			<span class="text-danger"><?= $aac_new_errors['coupon-code']??'' ?></span>

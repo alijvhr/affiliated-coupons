@@ -33,6 +33,7 @@ function aac_add_affiliated_menu_link_my_account( $items ) {
 }
 
 function aac_affiliated_create_content() {
+	global $aac_new_errors;
 	$coupon_create_link        = wc_get_account_endpoint_url( 'affiliated-coupons-create' );
 	$current_affiliate_percent = current_affiliate_percent();
 	wp_register_script( 'aac-datepicker', plugins_url( 'assets/persianDatepicker.min.js', __FILE__ ), array( 'jquery' ), '1.0', true );

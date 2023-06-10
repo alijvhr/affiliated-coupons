@@ -32,8 +32,8 @@ function aac_plugin_load() {
 	add_rewrite_endpoint( 'affiliated-coupons-withdraw-create', EP_ROOT | EP_PAGES );
 	if ( current_affiliate_percent() ) {
 		wp_enqueue_style( 'aac-style' );
-		aac_check_form_submit();
 		aac_affiliated_menu_endpoint();
+		aac_check_form_submit();
 	}
 }
 
