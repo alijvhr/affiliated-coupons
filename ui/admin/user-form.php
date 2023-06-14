@@ -1,5 +1,5 @@
 
-<h2><?= __( 'Affiliate', 'affiliated-coupons' ) ?></h2>
+<h2><?= __( 'affiliate', 'affiliated-coupons' ) ?></h2>
 <table class="form-table">
 	<tr>
 		<th><label for="aac_affiliate-percentage"><?= __( 'Affiliation percentage', 'affiliated-coupons' ) ?></label>

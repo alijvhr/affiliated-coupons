@@ -99,7 +99,7 @@ msgid "No withdrawals found"
 msgstr "درخواست برداشتی یافنت نشد"
 
 msgid "balance"
-msgstr "موجودی شما"
+msgstr "موجودی"
 
 msgid "Withdraw request"
 msgstr "درخواست برداشت"
@@ -151,3 +151,24 @@ msgstr "فعال"
 
 msgid "remove"
 msgstr "حذف"
+
+msgid "withdrawals"
+msgstr "برداشت ها"
+
+msgid "coupons"
+msgstr "کوپن ها"
+
+msgid "affiliates"
+msgstr "شریک ها"
+
+msgid "username"
+msgstr "نام کاربری"
+
+msgid "used"
+msgstr "مصرف شده"
+
+msgid "active"
+msgstr "فعال"
+
+msgid "expired"
+msgstr "منقضی شده"

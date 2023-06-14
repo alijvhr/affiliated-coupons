@@ -1,6 +1,6 @@
 <?php
 
-class Payments extends WP_List_Table {
+class Withdrawals extends WP_List_Table {
 	function __construct() {
 		parent::__construct( array(
 			'singular' => 'aac_list_payment',
@@ -53,7 +53,7 @@ class Payments extends WP_List_Table {
 		$order     = isset( $_GET['order'] ) ? esc_sql( $_GET['order'] ) : 'DESC';
 		$filter    = array_search( isset( $_GET['filter'] ) ? esc_sql( $_GET['filter'] ) : 'all', $aac_withdraw_status );
 		$filter    = $filter !== false ? " WHERE p.status = $filter" : '';
-		$per_page  = 3;
+		$per_page  = 20;
 		$offset    = ( ( $this->get_pagenum() - 1 ) * $per_page );
 		$query     = "SELECT u.id as uid, u.user_nicename as uname, p.* FROM $aac_table_payment p JOIN $users_tbl u ON u.id = p.affiliate_id $filter ORDER BY $orderby $order LIMIT $offset, $per_page";
 		$count_all = $wpdb->get_results( "SELECT count(*) as num_rows FROM $aac_table_payment p JOIN $users_tbl u ON u.id = p.affiliate_id $filter ORDER BY $orderby $order" )['num_rows'] ?? 0;
@@ -106,58 +106,5 @@ class Payments extends WP_List_Table {
 				return $item[ $column_name ];
 		}
 	}
-
-//	function display_rows() {
-//
-//		//Get the records registered in the prepare_items method
-//		$records = $this->items;
-//
-//		//Get the columns registered in the get_columns and get_sortable_columns methods
-//		list( $columns, $hidden ) = $this->get_column_info();
-//
-//		//Loop for each record
-//		if ( ! empty( $records ) ) {
-//			foreach ( $records as $rec ) {
-//
-//				//Open the line
-//				echo '< tr id="record_' . $rec->link_id . '">';
-//				foreach ( $columns as $column_name => $column_display_name ) {
-//
-//					//Style attributes for each col
-//					$class = "class='$column_name column-$column_name'";
-//					$style = "";
-//					if ( in_array( $column_name, $hidden ) ) {
-//						$style = ' style="display:none;"';
-//					}
-//					$attributes = $class . $style;
-//
-//					//edit link
-//					$editlink = '/wp-admin/link.php?action=edit&link_id=' . (int) $rec->link_id;
-//
-//					//Display the cell
-//					switch ( $column_name ) {
-//						case "col_link_id":
-//							echo '< td ' . $attributes . '>' . stripslashes( $rec->link_id ) . '< /td>';
-//							break;
-//						case "col_link_name":
-//							echo '< td ' . $attributes . '>' . stripslashes( $rec->link_name ) . '< /td>';
-//							break;
-//						case "col_link_url":
-//							echo '< td ' . $attributes . '>' . stripslashes( $rec->link_url ) . '< /td>';
-//							break;
-//						case "col_link_description":
-//							echo '< td ' . $attributes . '>' . $rec->link_description . '< /td>';
-//							break;
-//						case "col_link_visible":
-//							echo '< td ' . $attributes . '>' . $rec->link_visible . '< /td>';
-//							break;
-//					}
-//				}
-//
-//				//Close the line
-//				echo '< /tr>';
-//			}
-//		}
-//	}
 
 }

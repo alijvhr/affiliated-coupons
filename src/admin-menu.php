@@ -30,13 +30,27 @@ function aac_save_affiliate_percentage( $user_id ) {
 function aac_admin_menus() {
 	global $aac_icon;
 	add_menu_page(__('Affiliated coupons','affiliated-coupons'), __('Affiliated coupons','affiliated-coupons'), 'manage_options', 'aac-admin-menu', 'aac_admin_menu_content' ,$aac_icon,2);
-//	add_submenu_page('mt-top-level-handle', __('Test Sublevel','menu-test'), __('Test Sublevel','menu-test'), 'manage_options', 'sub-page', 'mt_sublevel_page');
-//	add_submenu_page('mt-top-level-handle', __('Test Sublevel 2','menu-test'), __('Test Sublevel 2','menu-test'), 'manage_options', 'sub-page2', 'mt_sublevel_page2');
+	add_submenu_page('aac-admin-menu', __('affiliates','affiliated-coupons'), __('affiliates','affiliated-coupons'), 'manage_options', 'aac-admin-affiliates-menu', 'aac_admin_affiliates_menu_content');
+	add_submenu_page('aac-admin-menu', __('withdrawals','affiliated-coupons'), __('withdrawals','affiliated-coupons'), 'manage_options', 'aac-admin-withdrawals-menu', 'aac_admin_withdrawals_menu_content');
 }
 
 function aac_admin_menu_content() {
-	require AFFILIATED_COUPONS_PATH . '/src/payments.php';
-	$table = new Payments();
+	require AFFILIATED_COUPONS_PATH . '/src/Coupons.php';
+	$table = new Coupons();
 	$table->prepare_items();
 	require AFFILIATED_COUPONS_PATH . '/ui/admin/main-menu.php';
+}
+
+function aac_admin_affiliates_menu_content() {
+	require AFFILIATED_COUPONS_PATH . '/src/Affiliates.php';
+	$table = new Affiliates();
+	$table->prepare_items();
+	require AFFILIATED_COUPONS_PATH . '/ui/admin/affiliates-menu.php';
+}
+
+function aac_admin_withdrawals_menu_content() {
+	require AFFILIATED_COUPONS_PATH . '/src/Withdrawals.php';
+	$table = new Withdrawals();
+	$table->prepare_items();
+	require AFFILIATED_COUPONS_PATH . '/ui/admin/payments-menu.php';
 }
